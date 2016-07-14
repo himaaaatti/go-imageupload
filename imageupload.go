@@ -68,9 +68,10 @@ func Process(r *http.Request, field string) (*Image, error) {
 	}
 
 	contentType := info.Header.Get("Content-Type")
+    contentDisposition := info.Header.Get("Content-Disposition")
 
 //      if !okContentType(contentType) {
-		return nil, errors.New(fmt.Sprintf("Wrong content type: %s", contentType))
+		return nil, errors.New(fmt.Sprintf("Wrong content type: %s, %s", contentType, contentDisposition))
 //      }
 
 	bs, err := ioutil.ReadAll(file)
